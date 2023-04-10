@@ -29,4 +29,4 @@ class SSMStrategy(Strategy):
         m = Macd()
         m.calculate(close)
 
-        return m.is_stronger_buy()
+        return m.is_increasing()

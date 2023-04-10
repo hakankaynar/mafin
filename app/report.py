@@ -24,9 +24,9 @@ class Report:
         return self
 
     def text(self):
-        txt = "\n==================================================================\n"
-        txt += self.stg + " Period: " + self.period + " Interval" + self.interval + " calculation\n"
-        txt += "==================================================================\n"
+        txt = "\n===============================\n"
+        txt += self.stg + " Period: " + self.period + " Interval: " + self.interval + "\n"
+        txt += "================================\n"
 
         for a_ticker in self.buy_tickers:
             txt += a_ticker + " is buy\n"

@@ -12,7 +12,7 @@ class SMEStrategy(Strategy):
 
         ticker_historical = ticker.history(period, interval, actions=False)
         close = ticker_historical['Close']
-        current = ticker.info['regularMarketPrice']
+        # current = ticker.info['regularMarketPrice']
 
         stochastic = Stochastic()
         stochastic.calculate(high=ticker_historical['High'], low=ticker_historical['Low'], close=close)
@@ -20,6 +20,7 @@ class SMEStrategy(Strategy):
         m = Macd()
         m.calculate(close)
 
-        ei = ema_indicator(close, window=200)
+        # ei = ema_indicator(close, window=200)
 
-        return stochastic.is_buy() and m.is_less_than(0) and m.is_buy()
+        # return stochastic.is_below(35) and m.is_less_than(0) and m.is_buy() and current < ei.iloc[-1]
+        return stochastic.is_below(35) and m.is_less_than(0) and m.is_buy()

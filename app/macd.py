@@ -20,6 +20,12 @@ class Macd:
 
     def is_stronger_buy(self, period=3):
 
+        if not self.is_buy():
+            return False
+
+        return self.is_increasing(period)
+
+    def is_increasing(self, period=3):
         tmp = self.base.tail(period) - self.signal.tail(period)
         lmax = tmp[0]
 

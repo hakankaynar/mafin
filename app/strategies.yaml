@@ -1,0 +1,30 @@
+strategies:
+  - strategy1:
+      code: WMB
+      name: WaveTrend - MACD - Bollinger Strategy
+      definition: |
+        WaveTrend is BUY
+        MACD is increasing
+        Bollinger is expanding
+      reference: https://www.tradingview.com/script/2KE8wTuF-Indicator-WaveTrend-Oscillator-WT/
+  
+  - strategy2:
+      code: SSM
+      name: SMA10 - SMA200 - MACD
+      definition: |
+        price is lower than 10 period single moving average
+        price is higher than 200 period single moving average
+        MACD is increasing
+      reference: https://youtu.be/c91imBlDYEg
+
+  - strategy3:
+      code: SME
+      name: Stochastic - MACD - EMA
+      definition: |
+        MACD is BUY and below 0
+        Stochastic is blow 35
+        Price below EMA200
+      reference: https://youtu.be/sjlQWT6fEnU
+
+
+        

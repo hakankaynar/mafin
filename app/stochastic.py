@@ -7,10 +7,9 @@ class Stochastic:
         self.stoch = None
         self.window = window
         self.smooth = smooth
-        self.buy_limit = buy_limit
 
     def calculate(self, high, low, close):
         self.stoch = StochasticOscillator(high, low, close, window=self.window, smooth_window=self.smooth).stoch();
 
-    def is_buy(self):
-        return self.stoch.iloc[-1] < self.buy_limit
+    def is_below(self, value):
+        return self.stoch.iloc[-1] < value
