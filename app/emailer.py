@@ -11,8 +11,8 @@ class Emailer:
 
     def send(self, to_email, txt):
         try:
-            client = boto3.client('ses', region_name=self.AWS_REGION, aws_access_key_id="AKIAXRNS3BBQSIGTCEXK",
-                                  aws_secret_access_key="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")
+            client = boto3.client('ses', region_name=self.AWS_REGION, aws_access_key_id="",
+                                  aws_secret_access_key="")
             self.logger.info("Sending email to " + to_email)
             response = client.send_email(
                 Destination={
