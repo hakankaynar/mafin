@@ -1,0 +1,10 @@
+# Create ecr in the region
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 518455494753.dkr.ecr.us-east-1.amazonaws.com
+
+docker build -t mafin .
+docker run mafin
+
+docker tag mafin 518455494753.dkr.ecr.us-east-1.amazonaws.com/mafin_ecr:0.0.1
+docker push 518455494753.dkr.ecr.us-east-1.amazonaws.com/mafin_ecr:0.0.1
+
+

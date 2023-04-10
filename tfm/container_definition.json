@@ -1,0 +1,16 @@
+[
+  {
+    "name": "mafin-task",
+    "image": "518455494753.dkr.ecr.us-east-1.amazonaws.com/mafin_ecr:latest",
+    "essential": true,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/mafin-task",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "/ecs/mafin-task",
+        "awslogs-create-group": "true"
+      }
+    }
+  }
+]

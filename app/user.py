@@ -18,11 +18,9 @@ names = ["AXP", "AMGN", "AAPL", "BA", "CAT", "CSCO", "CVX", "GS", "HD",
          "SHEL", "BP", "STLA", "CS.PA", "NESN.SW", "CA.PA", "EQNR.OL"]
 
 
-
-
 class User:
 
-    def __init__(self, uname, email, tickers, calculations):
+    def __init__(self, uname, email, tickers, calculations: Calculation):
         self.username = uname
         self.email = email
         self.tickers = tickers
@@ -30,6 +28,10 @@ class User:
 
     @staticmethod
     def get_users():
-        calculation = [Calculation("250d", "1d"), Calculation("250wk", "1wk")]
+        calculation = [Calculation("250d", "1d"),
+                       Calculation(strategy="SSM"),
+                       Calculation(strategy="SME", period="200d")]
         hakan = User("hakan", "hakankaynar@gmail.com", names, calculation)
-        return [hakan]
+        gizem = User("gizem", "kocgizem@gmail.com", names, calculation)
+
+        return [hakan, gizem]
