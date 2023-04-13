@@ -11,11 +11,10 @@ SME = "SME"
 class StrategyFactory:
 
     @staticmethod
-    def create(name) -> Strategy:
-        if name == WMB:
+    def create(code) -> Strategy:
+        if code == WMB:
             return WMBStrategy()
-        elif name == SSM:
+        elif code == SSM:
             return SSMStrategy()
-        elif name == SME:
+        elif code == SME:
             return SMEStrategy()
-

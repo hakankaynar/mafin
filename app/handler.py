@@ -2,6 +2,7 @@ import logging
 import sys
 
 from strategy_factory import StrategyFactory
+from strategy_config import StrategyConfig
 from user import User
 from report import Report
 from emailer import Emailer
@@ -36,4 +37,6 @@ def run(event, context):
 
 if __name__ == "__main__":
     logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+    StrategyConfig.read_cfg()
     run('', '')
+

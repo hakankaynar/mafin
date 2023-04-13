@@ -1,5 +1,6 @@
 from calculation import Calculation
 from user import User
+from strategy_config import StrategyConfig
 
 
 class Report:
@@ -24,9 +25,15 @@ class Report:
         return self
 
     def text(self):
+
+        if not self.buy_tickers:
+            return ''
+
         txt = "\n===============================\n"
-        txt += self.stg + " Period: " + self.period + " Interval: " + self.interval + "\n"
-        txt += "================================\n"
+        txt += StrategyConfig.read_name(self.stg) + '\n\n'
+        txt += StrategyConfig.read_definition(self.stg) + '\n'
+        txt += "Period: " + self.period + " Interval: " + self.interval + ""
+        txt += "\n===============================\n"
 
         for a_ticker in self.buy_tickers:
             txt += a_ticker + " is buy\n"
