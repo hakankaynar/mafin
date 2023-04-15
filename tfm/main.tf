@@ -50,12 +50,11 @@ data "aws_iam_policy_document" "mafin_ecr_policy" {
   }
 }
 
+
 resource "aws_ecr_repository_policy" "mafin_ecr_policy" {
   repository = aws_ecr_repository.mafin_ecr.name
   policy     = data.aws_iam_policy_document.mafin_ecr_policy.json
 }
-
-
 
 
 resource "aws_kms_key" "mafin_kms_key" {
@@ -64,7 +63,7 @@ resource "aws_kms_key" "mafin_kms_key" {
 }
 
 resource "aws_cloudwatch_log_group" "mafin_ecs_log_group" {
-  name = "mafin"
+  name = "mafin_ecs_log_group"
 }
 
 resource "aws_ecs_cluster" "mafin_ecs_cluster" {
@@ -80,98 +79,5 @@ resource "aws_ecs_cluster" "mafin_ecs_cluster" {
         cloud_watch_log_group_name     = aws_cloudwatch_log_group.mafin_ecs_log_group.name
       }
     }
-  }
-}
-
-
-resource "aws_ecs_cluster_capacity_providers" "mafin_ecs_cap_provider" {
-  cluster_name = aws_ecs_cluster.mafin_ecs_cluster.name
-
-  capacity_providers = ["FARGATE"]
-
-  default_capacity_provider_strategy {
-    base              = 1
-    weight            = 100
-    capacity_provider = "FARGATE"
-  }
-}
-
-resource "aws_iam_role" "ecs_task_execution_role" {
-  name = "ecs_task_execution_role"
-
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Sid: "",
-        Effect: "Allow",
-        Principal: {
-            Service: "ecs-tasks.amazonaws.com"
-        },
-        Action: "sts:AssumeRole"
-      }
-    ]
-  })
-}
-
-resource "aws_iam_role_policy" "log_policy" {
-  name = "log_policy"
-  role = aws_iam_role.ecs_task_execution_role.id
-
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect: "Allow",
-        Action: [
-            "ecr:GetAuthorizationToken",
-            "ecr:BatchCheckLayerAvailability",
-            "ecr:GetDownloadUrlForLayer",
-            "ecr:BatchGetImage",
-            "logs:CreateLogStream",
-            "logs:PutLogEvents"
-        ],
-        Resource: "*"
-      },
-    ]
-  })
-}
-
-resource "aws_iam_role_policy" "ses_policy" {
-  name = "ses_policy"
-  role = aws_iam_role.ecs_task_execution_role.id
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action: [
-          "ses:SendEmail",
-          "ses:SendRawEmail"
-        ]
-        Effect   = "Allow"
-        Resource = "*"
-      },
-    ]
-  })
-}
-
-
-
-resource "aws_ecs_task_definition" "mafin_task" {
-  family = "mafin"
-  cpu       = 256
-  memory    = 1024
-  requires_compatibilities = ["FARGATE"]
-  container_definitions = file("container_definition.json")
-  network_mode = "awsvpc"
-  execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
-
-  ephemeral_storage {
-    size_in_gib = 21
   }
 }
