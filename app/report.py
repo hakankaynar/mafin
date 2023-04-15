@@ -1,6 +1,7 @@
 from calculation import Calculation
 from user import User
 from strategy_config import StrategyConfig
+from ticker_data import TickerData
 
 
 class Report:
@@ -13,7 +14,7 @@ class Report:
         self.period = c.period
         self.stg = c.strategy
 
-    def add_buy_ticker(self, ticker: str):
+    def add_buy_ticker(self, ticker: TickerData):
         self.buy_tickers.append(ticker)
 
     def with_user(self, user):
@@ -36,6 +37,6 @@ class Report:
         txt += "\n===============================\n"
 
         for a_ticker in self.buy_tickers:
-            txt += a_ticker + " is buy\n"
+            txt += a_ticker.to_str() + "\n"
 
         return txt

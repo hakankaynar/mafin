@@ -12,8 +12,8 @@ names = ["AXP", "AMGN", "AAPL", "BA", "CAT", "CSCO", "CVX", "GS", "HD",
          "CBK.DE", "CON.DE", "DTG.DE", "DB", "DPW.DE", "DTE.DE", "EOAN.DE",
          "HNR1.DE", "HEI.DE", "HEN3.DE", "IFX.DE", "MBG.DE", "MTX.DE", "MUV2.MU",
          "PAH3.DE", "RWE.DE", "SAP", "SIE.DE", "ENR.DE", "VOW3.DE", "VNA.DE", "UPM.HE",
-         "IQQA.DE", "EXV6.DE", "IUAE.L", "HDLV.DE",
-         "EXV4.DE", "INRA.AS", "NTM.AS",
+         "IQQA.DE", "EXV6.DE", "IUAE.L", "HDLV.DE", "SIL", "GDX", "QDVF.DE", "XLP", "SEC0.DE",
+         "EXV4.DE", "INRA.AS", "NTM.AS", "NOVA", "EXX5.F", "G3TA.F", "PHAG.MI", "IGLN.L",
 
          "SHEL", "BP", "STLA", "CS.PA", "NESN.SW", "CA.PA", "EQNR.OL"]
 
