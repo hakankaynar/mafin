@@ -57,11 +57,6 @@ resource "aws_ecr_repository_policy" "mafin_ecr_policy" {
 }
 
 
-resource "aws_kms_key" "mafin_kms_key" {
-  description             = "mafin"
-  deletion_window_in_days = 7
-}
-
 resource "aws_cloudwatch_log_group" "mafin_ecs_log_group" {
   name = "mafin_ecs_log_group"
 }
@@ -71,7 +66,6 @@ resource "aws_ecs_cluster" "mafin_ecs_cluster" {
 
   configuration {
     execute_command_configuration {
-      kms_key_id = aws_kms_key.mafin_kms_key.arn
       logging    = "OVERRIDE"
 
       log_configuration {

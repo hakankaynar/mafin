@@ -1,21 +1,6 @@
+import yaml
+from yaml.loader import SafeLoader
 from calculation import Calculation
-
-names = ["AXP", "AMGN", "AAPL", "BA", "CAT", "CSCO", "CVX", "GS", "HD",
-         "HON", "IBM", "INTC", "JNJ", "KO", "JPM", "MCD", "MMM", "MRK",
-         "MSFT", "NKE", "PG", "TRV", "UNH", "CRM", "VZ", "V", "WBA", "WMT",
-         "DIS", "DOW",
-         "LMT", "GSK", "KMI", "FMS", "ABBV", "XOM", "VLO", "RIO", "BHP",
-         "GOLD", "BTI", "QCOM", "VFC", "O", "FL", "LOW", "TSM",
-         "PEP", "NVDA", "EMR", "GLEN.L",
-
-         "ADS.DE", "ALV.DE", "AIR.DE", "BAS.DE", "BAYN.DE", "BMW.DE",
-         "CBK.DE", "CON.DE", "DTG.DE", "DB", "DPW.DE", "DTE.DE", "EOAN.DE",
-         "HNR1.DE", "HEI.DE", "HEN3.DE", "IFX.DE", "MBG.DE", "MTX.DE", "MUV2.MU",
-         "PAH3.DE", "RWE.DE", "SAP", "SIE.DE", "ENR.DE", "VOW3.DE", "VNA.DE", "UPM.HE",
-         "IQQA.DE", "EXV6.DE", "IUAE.L", "HDLV.DE", "SIL", "GDX", "QDVF.DE", "XLP", "SEC0.DE",
-         "EXV4.DE", "INRA.AS", "NTM.AS", "NOVA", "EXX5.F", "G3TA.F", "PHAG.MI", "IGLN.L",
-
-         "SHEL", "BP", "STLA", "CS.PA", "NESN.SW", "CA.PA", "EQNR.OL"]
 
 
 class User:
@@ -27,11 +12,18 @@ class User:
         self.calculations = calculations
 
     @staticmethod
-    def get_users():
-        calculation = [Calculation("250d", "1d"),
-                       Calculation(strategy="SSM"),
-                       Calculation(strategy="SME", period="200d")]
-        hakan = User("hakan", "hakankaynar@gmail.com", names, calculation)
-        gizem = User("gizem", "kocgizem@gmail.com", names, calculation)
+    def get_users_from_file():
+        with open('users.yaml') as f:
+            cfg = yaml.load(f, Loader=SafeLoader)
+            users = []
+            for usr in cfg['users']:
 
-        return [hakan, gizem]
+                calculations = []
+                for calc in cfg['users'][usr]['calculations']:
+                    calculations.append(Calculation(strategy=calc['code'], period=calc['period'],
+                                                    interval=calc['interval']))
+
+                users.append(User(usr, cfg['users'][usr]['email'],
+                                  cfg['users'][usr]["tickers"].split(","), calculations))
+
+            return users
