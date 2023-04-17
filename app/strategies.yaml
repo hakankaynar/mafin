@@ -12,7 +12,7 @@ strategies:
     definition: |
       * Price is lower than 10 period single moving average
       * price is higher than 200 period single moving average
-      * MACD is increasing at least for 2 days
+      * MACD is negative but increasing at least for 2 days
     reference: https://youtu.be/c91imBlDYEg
 
   SME:

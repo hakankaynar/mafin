@@ -25,6 +25,9 @@ class Macd:
 
         return self.is_increasing(period)
 
+    def is_negative(self):
+        return self.base[-1] < 0
+
     def is_increasing(self, period=3):
         tmp = self.base.tail(period) - self.signal.tail(period)
         lmax = tmp[0]

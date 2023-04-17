@@ -1,6 +1,7 @@
 import boto3
 from botocore.exceptions import ClientError
 import logging
+import datetime
 
 
 class Emailer:
@@ -12,6 +13,9 @@ class Emailer:
 
     def send(self, to_email, txt):
         try:
+            current_datetime = datetime.datetime.now()
+            str_date = current_datetime.strftime("%d-%m-%Y")
+
             client = boto3.client('ses', region_name=self.AWS_REGION)
             self.logger.info("Sending email to " + to_email)
             response = client.send_email(
@@ -29,7 +33,7 @@ class Emailer:
                     },
                     'Subject': {
                         'Charset': self.CHARSET,
-                        'Data': 'Subject',
+                        'Data': "Signals - " + str_date,
                     },
                 },
                 Source='Mafin <mafin@gizemkaynar.com>',

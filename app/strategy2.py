@@ -29,4 +29,4 @@ class SSMStrategy(Strategy):
         m = Macd()
         m.calculate(close)
 
-        return m.is_increasing(period=2)
+        return m.is_negative() and m.is_increasing(period=2)

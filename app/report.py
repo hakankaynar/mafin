@@ -39,4 +39,4 @@ class Report:
         for a_ticker in self.buy_tickers:
             txt += a_ticker.to_str() + "\n"
 
-        return txt
+        return txt + "\n\n\n"

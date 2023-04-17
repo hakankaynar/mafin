@@ -1,6 +1,7 @@
 import logging
 import sys
 
+from requests.exceptions import HTTPError
 from strategy_factory import StrategyFactory
 from strategy_config import StrategyConfig
 from user import User
@@ -20,7 +21,9 @@ def do_calculation(tickers, rpt: Report, log):
             if result is True:
                 rpt.add_buy_ticker(TickerData().load(ticker))
         except RuntimeError as e:
-            log.warn(e)
+            log.warning(e)
+        except HTTPError as e:
+            log.warning(e)
 
 
 def run(emailer: Emailer, log):
