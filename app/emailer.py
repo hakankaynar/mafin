@@ -14,7 +14,7 @@ class Emailer:
     def send(self, to_email, txt):
         try:
             current_datetime = datetime.datetime.now()
-            str_date = current_datetime.strftime("%d-%m-%Y")
+            str_date = current_datetime.strftime("%d/%m/%Y")
 
             client = boto3.client('ses', region_name=self.AWS_REGION)
             self.logger.info("Sending email to " + to_email)
