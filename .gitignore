@@ -5,3 +5,4 @@ __pycache__
 tfm/.terraform.lock.hcl
 tfm/terraform.tfstate
 tfm/terraform.tfstate.backup
+yfinance.cache

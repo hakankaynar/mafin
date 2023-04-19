@@ -1,4 +1,4 @@
-import yfinance as yf
+from cache import Cache
 from wt import WaveTrend
 from macd import Macd
 from bolinger import Bollinger
@@ -8,8 +8,8 @@ from strategy import Strategy
 class WMBStrategy(Strategy):
 
     def calculate(self, t="cat", period="250d", interval="1d") -> bool:
-        ticker = yf.Ticker(t)
-        ticker_historical = ticker.history(period, interval, actions=False)
+        ticker = Cache(t)
+        ticker_historical = ticker.history(period, interval)
 
         close = ticker_historical['Close']
         # print("Last close of " + t + " is: " + str(close.tail(1).values[0]))

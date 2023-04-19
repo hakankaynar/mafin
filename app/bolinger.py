@@ -13,6 +13,9 @@ class Bollinger:
         self.lo = bollinger_lband(close)
         self.hi = bollinger_hband(close)
 
+    def is_bigger_then_ma(self, current):
+        return current > self.ma[-1]
+
     def is_expanding(self, period=2):
         tmp = self.hi.tail(period)
 
