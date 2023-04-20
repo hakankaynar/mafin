@@ -1,16 +1,15 @@
-import yfinance as yf
+from cache import Cache
 from strategy import Strategy
 from macd import Macd
 from stochastic import Stochastic
-from ta.trend import ema_indicator
 
 
 class SMEStrategy(Strategy):
 
     def calculate(self, t="cat", period="200d", interval="1d") -> bool:
-        ticker = yf.Ticker(t)
+        ticker = Cache(t)
 
-        ticker_historical = ticker.history(period, interval, actions=False)
+        ticker_historical = ticker.history(period, interval)
         close = ticker_historical['Close']
         # current = ticker.info['regularMarketPrice']
 

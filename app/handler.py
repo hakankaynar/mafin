@@ -1,5 +1,6 @@
 import logging
 import sys
+import time
 
 from requests.exceptions import HTTPError
 from strategy_factory import StrategyFactory
@@ -17,6 +18,7 @@ logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 def do_calculation(tickers, rpt: Report, log):
     for ticker in tickers:
         try:
+            time.sleep(5)
             result = StrategyFactory.create(rpt.stg).calculate(ticker, rpt.period, rpt.interval)
             if result is True:
                 rpt.add_buy_ticker(TickerData().load(ticker))
@@ -40,7 +42,7 @@ def run(emailer: Emailer, log):
                 report_txt += report.text()
                 log.info(report.text())
 
-        emailer.send(a_user.email, report_txt)
+        # emailer.send(a_user.email, report_txt)
 
 
 if __name__ == "__main__":
