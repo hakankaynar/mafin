@@ -23,18 +23,5 @@ strategies:
       * Price below EMA200
     reference: https://youtu.be/sjlQWT6fEnU
 
-  W:
-    name: WaveTrend Strategy
-    definition: |
-      * WaveTrend is BUY
-      * WaveTrend is Oversold
-    reference: Gizem
-
-  IB:
-    name: Ichimoku Bollinger Strategy
-    definition: |
-      * Ichimoku conversion is bigger than the base
-      * Current value is bigger than avg
-    reference: Hakan
 
         

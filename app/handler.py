@@ -1,6 +1,5 @@
 import logging
 import sys
-import time
 
 from requests.exceptions import HTTPError
 from strategy_factory import StrategyFactory
@@ -17,7 +16,6 @@ logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 def do_calculation(tickers, rpt: Report, log):
     for ticker in tickers:
-        time.sleep(5)
         try:
             result = StrategyFactory.create(rpt.stg).calculate(ticker, rpt.period, rpt.interval)
             if result is True:

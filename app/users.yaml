@@ -6,19 +6,10 @@ users:
       - code: WMB
         period: 250d
         interval: 1d
-      - code: WMB
-        period: 100wk
-        interval: 1wk
-      - code: WMB
-        period: 1mo
-        interval: 1h
       - code: SSM
         period: 200d
         interval: 1d
       - code: SME
-        period: 200d
-        interval: 1d
-      - code: IB
         period: 200d
         interval: 1d
   gizem:
@@ -28,15 +19,9 @@ users:
       - code: WMB
         period: 250d
         interval: 1d
-      - code: WMB
-        period: 100wk
-        interval: 1wk
       - code: SSM
         period: 200d
         interval: 1d
       - code: SME
         period: 200d
         interval: 1d
-      - code: W
-        period: 100wk
-        interval: 1wk
