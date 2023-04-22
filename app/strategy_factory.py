@@ -2,10 +2,12 @@ from strategy import Strategy
 from strategy1 import WMBStrategy
 from strategy2 import SSMStrategy
 from strategy3 import SMEStrategy
+from strategy4 import WaveStrategy
 
 WMB = "WMB"
 SSM = "SSM"
 SME = "SME"
+WAVE = "WAVE"
 
 
 class StrategyFactory:
@@ -18,3 +20,5 @@ class StrategyFactory:
             return SSMStrategy()
         elif code == SME:
             return SMEStrategy()
+        elif code == WAVE:
+            return WaveStrategy()

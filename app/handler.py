@@ -42,7 +42,7 @@ def run(emailer: Emailer, log):
                 report_txt += report.text()
                 log.info(report.text())
 
-        # emailer.send(a_user.email, report_txt)
+        emailer.send(a_user.email, report_txt)
 
 
 if __name__ == "__main__":

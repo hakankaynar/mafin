@@ -23,5 +23,12 @@ strategies:
       * Price below EMA200
     reference: https://youtu.be/sjlQWT6fEnU
 
+  WAVE:
+    name: WaveTrend
+    definition: |
+      * WT is buy
+      * WT is oversell
+    reference: Gizem
+
 
         

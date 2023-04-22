@@ -30,3 +30,6 @@ class WaveTrend:
 
     def is_buy(self):
         return self.wt1.tail(1).values[0] > self.wt2.tail(1).values[0]
+
+    def is_oversell(self):
+        return self.wt1.tail(1).values[0] < -10

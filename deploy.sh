@@ -1,9 +1,10 @@
 #!/bin/bash
-VERSION="${1:-0.0.28}"
+VERSION="${1:-0.0.31}"
 
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 518455494753.dkr.ecr.us-east-1.amazonaws.com
 
 cd app
+rm yfinance.cache
 docker build -t mafin .
 
 docker tag mafin 518455494753.dkr.ecr.us-east-1.amazonaws.com/mafin_ecr:$VERSION
