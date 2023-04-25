@@ -19,12 +19,14 @@ def do_calculation(tickers, rpt: Report, log):
     for ticker in tickers:
         try:
             time.sleep(5)
-            result = StrategyFactory.create(rpt.stg).calculate(ticker, rpt.period, rpt.interval)
-            if result is True:
+            result = StrategyFactory.create(rpt.stg).calculate(t=ticker, period=rpt.period, interval=rpt.interval)
+            if result:
                 rpt.add_buy_ticker(TickerData().load(ticker))
         except RuntimeError as e:
             log.warning(e)
         except HTTPError as e:
+            log.warning(e)
+        except IndexError as e:
             log.warning(e)
 
 

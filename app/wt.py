@@ -28,8 +28,11 @@ class WaveTrend:
         self.wt1 = tci
         self.wt2 = sma_indicator(self.wt1, 4)
 
-    def is_buy(self):
+    def is_buy(self) -> bool:
         return self.wt1.tail(1).values[0] > self.wt2.tail(1).values[0]
 
-    def is_oversell(self):
+    def is_smaller(self, val) -> bool:
+        return self.wt1.tail(1).values[0] < val
+
+    def is_oversell(self) -> bool:
         return self.wt1.tail(1).values[0] < -10

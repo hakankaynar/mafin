@@ -31,4 +31,13 @@ strategies:
     reference: Gizem
 
 
+  SW:
+    name: SuperTrend - WaveTrend
+    definition: |
+      * WT is buy
+      * WT is smaller than 25
+      * SuperTrend is buy
+    reference: Hakan
+
+
         
