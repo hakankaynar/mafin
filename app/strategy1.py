@@ -3,9 +3,27 @@ from wt import WaveTrend
 from macd import Macd
 from bolinger import Bollinger
 from strategy import Strategy
+from download import DownloadedTicker
 
 
 class WMBStrategy(Strategy):
+
+    def calculate_downloaded(self, ticker: DownloadedTicker) -> bool:
+        close = ticker.close
+
+        wt = WaveTrend()
+        wt.calculate(close)
+
+        if wt.is_buy():
+            m = Macd()
+            m.calculate(close)
+
+            if m.is_stronger_buy():
+                b = Bollinger()
+                b.calculate(close)
+                return b.is_expanding()
+
+        return False
 
     def calculate(self, t="cat", period="250d", interval="1d") -> bool:
         ticker = Cache(t)

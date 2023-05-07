@@ -1,9 +1,13 @@
 from cache import Cache
 from macd import Macd
 from strategy import Strategy
+from download import DownloadedTicker
 
 
 class SSMStrategy(Strategy):
+
+    def calculate_downloaded(self, ticker: DownloadedTicker) -> bool:
+        return False
 
     def calculate(self, t="cat", period="250d", interval="1d") -> bool:
         ticker = Cache(t)

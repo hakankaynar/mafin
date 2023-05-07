@@ -47,6 +47,32 @@ def run(emailer: Emailer, log):
         emailer.send(a_user.email, report_txt)
 
 
+def run_dl(emailer: Emailer, log):
+    log.info('Starting calculations')
+    users = User.get_users_dl_from_file()
+
+    for u in users:
+        report_txt = ''
+        tickers = u.download.download()
+        for c in u.calculations:
+            report = generate_report(c, tickers, u)
+            if report.buy_tickers:
+                report_txt += report.text()
+                log.info(report.text())
+
+        emailer.send(u.email, report_txt)
+
+
+def generate_report(c, tickers, u):
+    report = Report(c, u)
+    for ticker in tickers:
+        result = StrategyFactory.create(c.strategy).calculate_downloaded(ticker)
+        if result:
+            report.add_buy_ticker(TickerData().load(ticker.name))
+            time.sleep(5)
+    return report
+
+
 if __name__ == "__main__":
     StrategyConfig.read_cfg()
-    run(Emailer(), logger)
+    run_dl(Emailer(), logger)
