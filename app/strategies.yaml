@@ -39,5 +39,11 @@ strategies:
       * SuperTrend is buy
     reference: Hakan
 
+  DON:
+    name: Donchian
+    definition: |
+      * 30 period Donchian high is low than current price
+    reference: https://www.investopedia.com/terms/d/donchianchannels.asp
+
 
         
