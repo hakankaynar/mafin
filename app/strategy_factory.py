@@ -5,6 +5,7 @@ from strategy3 import SMEStrategy
 from strategy4 import WaveStrategy
 from strategy5 import WaveSuperStrategy
 from strategy6 import DonchianStrategy
+from strategy7 import DWMStrategy
 
 WMB = "WMB"
 SSM = "SSM"
@@ -12,6 +13,7 @@ SME = "SME"
 WAVE = "WAVE"
 SW = "SW"
 DON = "DON"
+DWM = "DWM"
 
 
 class StrategyFactory:
@@ -30,3 +32,5 @@ class StrategyFactory:
             return WaveSuperStrategy()
         elif code == DON:
             return DonchianStrategy()
+        elif code == DWM:
+            return DWMStrategy()

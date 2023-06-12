@@ -45,5 +45,11 @@ strategies:
       * 30 period Donchian high is low than current price
     reference: https://www.investopedia.com/terms/d/donchianchannels.asp
 
-
+  DWM:
+    name: Donchian WaveTrend Macd
+    definition: |
+      * 30 period Donchian high is low than current price
+      * WaveTrend is buy
+      * MACD is buy
+    reference: Popo
         
