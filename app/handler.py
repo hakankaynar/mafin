@@ -66,10 +66,14 @@ def run_dl(emailer: Emailer, log):
 def generate_report(c, tickers, u):
     report = Report(c, u)
     for ticker in tickers:
-        result = StrategyFactory.create(c.strategy).calculate_downloaded(ticker)
-        if result:
-            report.add_buy_ticker(TickerData().load(ticker.name))
-            time.sleep(5)
+        try:
+            result = StrategyFactory.create(c.strategy).calculate_downloaded(ticker)
+            if result:
+                report.add_buy_ticker(TickerData().load(ticker.name))
+                time.sleep(5)
+        except IndexError as ie:
+            print("Index error:", ie)
+
     return report
 
 
