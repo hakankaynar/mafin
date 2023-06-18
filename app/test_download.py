@@ -1,6 +1,5 @@
 import unittest
 from user import User
-from download import Download
 
 
 class TestDownload(unittest.TestCase):

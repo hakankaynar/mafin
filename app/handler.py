@@ -18,7 +18,6 @@ logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 def do_calculation(tickers, rpt: Report, log):
     for ticker in tickers:
         try:
-            time.sleep(5)
             result = StrategyFactory.create(rpt.stg).calculate(t=ticker, period=rpt.period, interval=rpt.interval)
             if result:
                 rpt.add_buy_ticker(TickerData().load(ticker))
@@ -56,11 +55,12 @@ def run_dl(emailer: Emailer, log):
         tickers = u.download.download()
         for c in u.calculations:
             report = generate_report(c, tickers, u)
-            if report.buy_tickers:
+            if len(report.buy_tickers) > 0:
                 report_txt += report.text()
                 log.info(report.text())
 
-        emailer.send(u.email, report_txt)
+        if len(report_txt) > 0:
+            emailer.send(u.email, report_txt)
 
 
 def generate_report(c, tickers, u):
@@ -70,9 +70,8 @@ def generate_report(c, tickers, u):
             result = StrategyFactory.create(c.strategy).calculate_downloaded(ticker)
             if result:
                 report.add_buy_ticker(TickerData().load(ticker.name))
-                time.sleep(5)
         except IndexError as ie:
-            print("Index error:", ie)
+            print(ticker.name + " Index error:", ie)
 
     return report
 

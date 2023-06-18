@@ -1,5 +1,5 @@
 import unittest
-from strategy6 import DonchianStrategy
+from strategyDON import DonchianStrategy
 
 
 class TestStrategy5(unittest.TestCase):

@@ -19,10 +19,13 @@ class Download:
 
     def download(self):
         downloaded = yfc.download(tickers=self.tickers, interval=self.interval, period=self.period, group_by='ticker')
+        print("Downloaded size: " + str(len(downloaded)))
         tickers = []
         for ticker in self.tickers.split(' '):
-            tickers.append(DownloadedTicker(name=ticker, low=downloaded[ticker]['Low'], high=downloaded[ticker]['High'],
-                                            close=downloaded[ticker]['Close']))
+            try:
+                tickers.append(DownloadedTicker(name=ticker, low=downloaded[ticker]['Low'], high=downloaded[ticker]['High'], close=downloaded[ticker]['Close']))
+            except KeyError as ke:
+                print(ticker + " Key error:", ke)
         return tickers
 
 

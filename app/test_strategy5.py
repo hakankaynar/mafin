@@ -1,5 +1,5 @@
 import unittest
-from strategy5 import WaveSuperStrategy
+from strategySW import WaveSuperStrategy
 
 
 class TestStrategy5(unittest.TestCase):

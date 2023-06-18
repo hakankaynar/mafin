@@ -34,5 +34,5 @@ class WaveTrend:
     def is_smaller(self, val) -> bool:
         return self.wt1.tail(1).values[0] < val
 
-    def is_oversell(self) -> bool:
-        return self.wt1.tail(1).values[0] < -10
+    def is_oversell(self, val=-10) -> bool:
+        return self.wt1.tail(1).values[0] < val

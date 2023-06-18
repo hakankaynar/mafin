@@ -9,7 +9,7 @@ class DWMStrategy(Strategy):
 
     def calculate_downloaded(self, ticker: DownloadedTicker) -> bool:
 
-        dc = DonchianChannel(high=ticker.high, low=ticker.low, close=ticker.close, window=30, offset=1)
+        dc = DonchianChannel(high=ticker.high, low=ticker.low, close=ticker.close, window=30, offset=1, fillna=True)
         current = ticker.close.tail(1).values[0]
 
         if dc.donchian_channel_hband().tail(1).values[0] < current :

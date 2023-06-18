@@ -6,6 +6,13 @@ strategies:
       * MACD is increasing
       * Bollinger is expanding
     reference: https://www.tradingview.com/script/2KE8wTuF-Indicator-WaveTrend-Oscillator-WT/
+
+  WM:
+    name: WaveTrend - MACD
+    definition: |
+      * WaveTrend is BUY
+      * MACD is increasing
+    reference: https://www.tradingview.com/script/2KE8wTuF-Indicator-WaveTrend-Oscillator-WT/
   
   SSM:
     name: SMA10 - SMA200 - MACD
